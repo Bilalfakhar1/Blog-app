@@ -8,6 +8,12 @@ import Signup from './pages/signup'
 import Dashboard from './pages/Dashboard'
 import Projects from './pages/projects'
 import Header from './components/Header'
+import Footercomp from './components/footer'
+import PrivateRoute from './components/PrivateRoute'
+import CreatePost from './pages/CreatePost'
+import PostRoute from './components/PostRoute'
+import UpdatePost from './pages/UpdatePost'
+import PostPage from './pages/PostPage'
 
 function App() {
  
@@ -20,10 +26,17 @@ function App() {
       <Route path='/about' element={<About/>}/>
       <Route path='/SignIn' element={<SignIn/>}/>
       <Route path='/Signup' element={<Signup/>}/>
-      <Route path='/Dashboard' element={<Dashboard/>}/>
+      <Route element={<PrivateRoute/>}>
+          <Route path='/Dashboard' element={<Dashboard/>}/>
+      </Route>
+      <Route element={<PostRoute/>}>
+      <Route path='/create-post' element={<CreatePost/>} />
+      <Route path='/update-post/:postId' element={<UpdatePost/>} />
+      </Route>
       <Route path='/Projects' element={<Projects/>}/>
+      <Route path='/post/:postSlug' element={<PostPage/>}/>
      </Routes>
-     
+     <Footercomp/>
      </BrowserRouter>
   )
 }
